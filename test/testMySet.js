@@ -89,3 +89,15 @@ describe('difference', () => {
     assert.deepStrictEqual(set1.difference(set2), expected);
   });
 });
+
+describe('toString', () => {
+  it('Should give set in literal string', () => {
+    const set = new MySet();
+    set.add(10);
+    assert.deepStrictEqual(set.toString(), '10');
+  });
+  it('Should give empty string when no element is present', () => {
+    const set = new MySet();
+    assert.deepStrictEqual(set.toString(), '');
+  });
+});

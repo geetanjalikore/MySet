@@ -39,7 +39,7 @@ class MySet {
   }
 
   toString() {
-    return `${[...this.set]}`;
+    return `${this.set}`;
   }
 }
 
