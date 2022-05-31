@@ -57,6 +57,23 @@ describe('union', () => {
 
     assert.deepStrictEqual(set1.union(set2), expected);
   });
+
+  it('Should give union by removing duplicate elements', () => {
+    const set1 = new MySet();
+    set1.add(10);
+    set1.add(20);
+
+    const set2 = new MySet();
+    set2.add(10);
+    set2.add(30);
+
+    const expected = new MySet();
+    expected.add(10);
+    expected.add(20);
+    expected.add(30);
+
+    assert.deepStrictEqual(set1.union(set2), expected);
+  });
 });
 
 describe('intersect', () => {
@@ -73,6 +90,19 @@ describe('intersect', () => {
     expected.add(10);
     assert.deepStrictEqual(set1.intersect(set2), expected);
   });
+
+  it('Should give intersection as empty when no common elements found', () => {
+    const set1 = new MySet();
+    set1.add(10);
+    set1.add(20);
+
+    const set2 = new MySet();
+    set2.add(40);
+    set2.add(30);
+
+    const expected = new MySet();
+    assert.deepStrictEqual(set1.intersect(set2), expected);
+  });
 });
 
 describe('difference', () => {
@@ -85,6 +115,33 @@ describe('difference', () => {
     set2.add(10);
 
     const expected = new MySet();
+    expected.add(20);
+    assert.deepStrictEqual(set1.difference(set2), expected);
+  });
+
+  it('Should give difference empty if all items of set1 are in set2', () => {
+    const set1 = new MySet();
+    set1.add(10);
+    set1.add(20);
+
+    const set2 = new MySet();
+    set2.add(10);
+    set2.add(20);
+
+    const expected = new MySet();
+    assert.deepStrictEqual(set1.difference(set2), expected);
+  });
+
+  it('Should give all elements if all items of set1 are absent set2', () => {
+    const set1 = new MySet();
+    set1.add(10);
+    set1.add(20);
+
+    const set2 = new MySet();
+    set2.add(30);
+
+    const expected = new MySet();
+    expected.add(10);
     expected.add(20);
     assert.deepStrictEqual(set1.difference(set2), expected);
   });
