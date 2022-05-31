@@ -1,34 +1,45 @@
 class MySet {
-  constructor(set) {
-    this.set = new Set(set);
+  constructor() {
+    this.set = [];
+  }
+
+  has(element) {
+    return this.set.includes(element);
+  }
+
+  add(element) {
+    if (!this.has(element)) {
+      this.set.push(element);
+    }
+  }
+
+  size() {
+    return this.set.length;
   }
 
   union(otherSet) {
-    return new MySet([...this.set, ...otherSet.set]);
+    const set = [...this.set, ...otherSet.set];
+    const unionSet = new MySet();
+    set.forEach((item) => unionSet.add(item));
+    return unionSet;
   }
 
   intersect(otherSet) {
-    const intersects = [...otherSet.set].filter((element) => {
-      return this.set.has(element);
-    });
-
-    return new MySet(intersects);
+    const intersects = otherSet.set.filter(element => this.has(element));
+    const intersectSet = new MySet();
+    intersects.forEach(item => intersectSet.add(item));
+    return intersectSet;
   }
 
   difference(otherSet) {
-    const difference = [...this.set].filter((element) => {
-      return !otherSet.set.has(element);
-    });
-
-    return new MySet(difference);
+    const difference = this.set.filter((element) => !otherSet.has(element));
+    const differenceSet = new MySet();
+    difference.forEach((item) => differenceSet.add(item));
+    return differenceSet;
   }
 
   toString() {
     return `${[...this.set]}`;
-  }
-
-  has(element) {
-    return [...this.set].includes(element);
   }
 }
 
