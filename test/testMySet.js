@@ -96,8 +96,17 @@ describe('toString', () => {
     set.add(10);
     assert.deepStrictEqual(set.toString(), '10');
   });
+
   it('Should give empty string when no element is present', () => {
     const set = new MySet();
     assert.deepStrictEqual(set.toString(), '');
+  });
+
+  it('Should give comma separated values in string for multiple items', () => {
+    const set = new MySet();
+    set.add(10);
+    set.add('hello');
+    set.add([30, 20]);
+    assert.deepStrictEqual(set.toString(), '10,hello,30,20');
   });
 });
