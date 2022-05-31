@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { MySet } = require('../src/MySet.js');
+const { MySet } = require('../src/mySet.js');
 
 describe('size', () => {
   it('Should give size 0 when no element is in set', () => {
@@ -24,9 +24,9 @@ describe('add', () => {
   it('Should not add duplicate element to set', () => {
     const set1 = new MySet();
     set1.add(20);
-    set1.add(10);
     set1.add(20);
-    assert.deepStrictEqual(set1.size(), 2);
+    set1.add(20);
+    assert.deepStrictEqual(set1.size(), 1);
   });
 });
 
@@ -60,7 +60,7 @@ describe('union', () => {
 });
 
 describe('intersect', () => {
-  it('Shold give intersection of two sets', () => {
+  it('Should give intersection of two sets', () => {
     const set1 = new MySet();
     set1.add(10);
     set1.add(20);
@@ -108,5 +108,15 @@ describe('toString', () => {
     set.add('hello');
     set.add([30, 20]);
     assert.deepStrictEqual(set.toString(), '10,hello,30,20');
+  });
+});
+
+describe('clear', () => {
+  it('Should clear all the elements of set', () => {
+    const set1 = new MySet();
+    set1.add(10);
+    set1.add(20);
+    set1.clear();
+    assert.deepStrictEqual(set1.size(), 0);
   });
 });

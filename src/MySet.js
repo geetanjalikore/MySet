@@ -17,6 +17,14 @@ class MySet {
     return this.set.length;
   }
 
+  toString() {
+    return `${this.set}`;
+  }
+
+  clear() {
+    this.set = [];
+  }
+
   union(otherSet) {
     const set = [...this.set, ...otherSet.set];
     const unionSet = new MySet();
@@ -36,10 +44,6 @@ class MySet {
     const differenceSet = new MySet();
     difference.forEach((item) => differenceSet.add(item));
     return differenceSet;
-  }
-
-  toString() {
-    return `${this.set}`;
   }
 }
 
